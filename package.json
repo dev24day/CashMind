@@ -1,0 +1,28 @@
+{
+  "name": "cashmind",
+  "version": "1.0.0",
+  "description": "Building a game based on web-socket",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --exec babel-node src/server.js --delay 1s"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dev24day/CashMind.git"
+  },
+  "author": "dev24day",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dev24day/CashMind/issues"
+  },
+  "homepage": "https://github.com/dev24day/CashMind#readme",
+  "dependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/node": "^7.8.7",
+    "@babel/preset-env": "^7.9.5",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.3",
+    "socket.io": "^2.3.0"
+  }
+}
