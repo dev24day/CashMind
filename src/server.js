@@ -19,10 +19,16 @@ const server = app.listen(PORT, handleListening);
 const io = socketIO(server);
 
 io.on("connection", socket => {
-  //이 socket은 방금접속한 socket만을 의미
-  console.log("connected succesfully");
-  setTimeout(() => {
-    socket.broadcast.emit("hello"); //server가 방금접속한 client 빼고 나머지에게 이벤트 발생시킴
-  }, 3000);
-  socket.on("helloguys", () => console.log("client says hello to server"));
+  socket.emit("join");
+  socket.on("newMessage", data => {
+    //newMessage 이벤트에 포함된 data
+    console.log(`New Message Received: ${data.message}`);
+    socket.broadcast.emit("msgNotification", {
+      message: data.message,
+      nickname: socket.nickname || "anon"
+    });
+  });
+  socket.on("setNickname", ({ nickname }) => {
+    socket.nickname = nickname;
+  });
 });
