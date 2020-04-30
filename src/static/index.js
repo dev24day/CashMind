@@ -1,2 +1,3 @@
 // eslint-disable-next-line no-undef
-io("/"); //서버에 연결됨
+const socket = io("/"); //서버에 연결됨
+socket.on("hello", () => console.log("Somebody say hello"));
