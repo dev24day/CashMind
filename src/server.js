@@ -19,9 +19,10 @@ const server = app.listen(PORT, handleListening);
 const io = socketIO(server);
 
 io.on("connection", socket => {
-  //client가 연결되면 자동으로 connection이벤트가 발생된것
+  //이 socket은 방금접속한 socket만을 의미
   console.log("connected succesfully");
   setTimeout(() => {
-    socket.emit("hello"); //server가 socket에게hello란 이벤트를 발생시킴
+    socket.broadcast.emit("hello"); //server가 방금접속한 client 빼고 나머지에게 이벤트 발생시킴
   }, 3000);
+  socket.on("helloguys", () => console.log("client says hello to server"));
 });
